@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "timestamp": "2026-11-18T09:35:42Z",
-    "commit": "local-build",
+    "timestamp": "2026-11-18T09:38:20Z",
+    "commit": "f61d8ea",
     "configuration": "Production",
     "data_version": "v1.0.0-deterministic-bundle",
     "execution_mode": "SANDBOX_SUBPROCESS",
@@ -12,31 +12,31 @@
       "stage": "Stage 1: Contest API, Auth & Tenancy",
       "test_file": "tests/test_stage1_contest_api.py",
       "passed": true,
-      "duration_sec": 5.92
+      "duration_sec": 7.53
     },
     {
       "stage": "Stage 2: Asynchronous Judge & Safe Execution",
       "test_file": "tests/test_stage2_async_judge.py",
       "passed": true,
-      "duration_sec": 9.51
+      "duration_sec": 7.28
     },
     {
       "stage": "Stage 3: Retries, Concurrency & Rejudging",
       "test_file": "tests/test_stage3_retries_concurrency.py",
       "passed": true,
-      "duration_sec": 7.36
+      "duration_sec": 7.8
     },
     {
       "stage": "Stage 4: Security Boundaries & Diagnostics",
       "test_file": "tests/test_stage4_security_diagnostics.py",
       "passed": true,
-      "duration_sec": 5.91
+      "duration_sec": 5.66
     },
     {
       "stage": "Stage 5: Comprehensive E2E Multi-Worker Lifecycle",
       "test_file": "tests/test_comprehensive_e2e.py",
       "passed": true,
-      "duration_sec": 5.72
+      "duration_sec": 5.69
     }
   ]
 }
