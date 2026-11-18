@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+shodh.db
+shodh.db-journal
+.env
+.venv/
+env/
+venv/

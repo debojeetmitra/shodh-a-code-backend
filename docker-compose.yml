@@ -1,0 +1,72 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: shodh-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: shodh_contest
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d shodh_contest"]
+      interval: 3s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    container_name: shodh-api
+    restart: always
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@postgres:5432/shodh_contest
+      EXECUTION_MODE: SANDBOX_SUBPROCESS
+      LOG_LEVEL: INFO
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  worker-1:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.worker
+    container_name: shodh-worker-1
+    restart: always
+    command: ["python", "worker_daemon.py", "--worker-id", "worker-compose-1", "--poll-interval", "0.5"]
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@postgres:5432/shodh_contest
+      WORKER_ID: worker-compose-1
+      EXECUTION_MODE: SANDBOX_SUBPROCESS
+    depends_on:
+      postgres:
+        condition: service_healthy
+      api:
+        condition: service_started
+
+  worker-2:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.worker
+    container_name: shodh-worker-2
+    restart: always
+    command: ["python", "worker_daemon.py", "--worker-id", "worker-compose-2", "--poll-interval", "0.5"]
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@postgres:5432/shodh_contest
+      WORKER_ID: worker-compose-2
+      EXECUTION_MODE: SANDBOX_SUBPROCESS
+    depends_on:
+      postgres:
+        condition: service_healthy
+      api:
+        condition: service_started
+
+volumes:
+  postgres_data:

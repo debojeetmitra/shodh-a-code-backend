@@ -1,0 +1,10 @@
+# Isolated sandbox execution image for untrusted submitted Python programs
+FROM python:3.11-alpine
+
+# Run strictly as non-root user (uid 10001)
+RUN adduser -D -u 10001 sandboxuser
+
+USER 10001
+WORKDIR /tmp
+
+CMD ["python3", "-c", "print('Shodh Sandbox Ready')"]

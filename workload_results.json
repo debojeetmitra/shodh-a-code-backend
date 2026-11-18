@@ -1,0 +1,41 @@
+{
+  "workload_metadata": {
+    "timestamp": "2026-11-18T09:35:16Z",
+    "os": "Windows-11-10.0.22621-SP0",
+    "cpu_count": 4,
+    "total_ram_gb": 15.87,
+    "execution_mode": "SANDBOX_SUBPROCESS",
+    "total_requests": 20,
+    "concurrency": 4,
+    "duration_seconds": 5.03,
+    "throughput_rps": 3.97,
+    "errors": 0
+  },
+  "api_submission_overhead_ms": {
+    "count": 8,
+    "p50": 186.07,
+    "p95": 272.29,
+    "p99": 272.29,
+    "avg": 187.01,
+    "min": 89.1,
+    "max": 272.29
+  },
+  "leaderboard_read_latency_ms": {
+    "count": 12,
+    "p50": 11.27,
+    "p95": 65.09,
+    "p99": 65.09,
+    "avg": 24.71,
+    "min": 8.78,
+    "max": 65.09
+  },
+  "async_judge_queue_delay_ms": {
+    "count": 8,
+    "p50": 2262.01,
+    "p95": 2435.25,
+    "p99": 2435.25,
+    "avg": 2037.11,
+    "min": 1116.14,
+    "max": 2435.25
+  }
+}
